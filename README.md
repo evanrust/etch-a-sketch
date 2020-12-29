@@ -1,1 +1,1 @@
-# etch-a-sketch
+This is a sample webpage that utilizes JS to display a 16x16 grid, allowing the user to "shade" each cell as if they were playing with an Etch-a-Sketch
