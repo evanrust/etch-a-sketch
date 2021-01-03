@@ -1,1 +1,1 @@
-This is a sample webpage that utilizes JS to display a 16x16 grid, allowing the user to "shade" each cell as if they were playing with an Etch-a-Sketch
+This is a sample webpage that utilizes JS to display a grid, allowing the user to "shade" each cell as if they were playing with an Etch-a-Sketch.  The dimensions of the grid (and therefore the resolution of the game) can be set by the user.
