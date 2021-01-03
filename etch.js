@@ -1,30 +1,56 @@
-//get dimensions
-const dim = 16;
-
-//container selector
-const cont = document.querySelector(".container");
+//functions
 
 //function to add element
-function addElement(elementTag, elementId, elementClass, parentId){
-    let p = document.getElementById(parentId);
+function addSquare(elementTag, elementClass){
+    // let p = document.getElementById(parentId);
+    // let newElement = document.createElement(elementTag);
+    // newElement.setAttribute("id",elementId);
+    // newElement.setAttribute("class",elementClass);
+    // p.appendChild(newElement);
+    let p = document.getElementById("canvas");
     let newElement = document.createElement(elementTag);
-    newElement.setAttribute("id",elementId);
     newElement.setAttribute("class",elementClass);
     p.appendChild(newElement);
 }
 
-//make a 16x16 grid of squares
-for(let i = 1; i<=dim; i++){
-    //add a new div for this col
-    addElement("div","col-"+i, "col", "canvas");
-    for(let j = 1; j<= dim; j++){
-        //add 16 elements for the col
-        addElement("div",i + "-" + j, "square", "col-"+i);
-    }
+//function to define grid
+function generateGrid(gridDim){
+    cont.style.gridTemplateColumns = "repeat(" + gridDim + ", 1fr)";
+    cont.style.gridTemplateRows = "repeat(" + gridDim + ", 1fr)";
+    //make a grid of squares
+    for(let i = 1; i<=dim*dim; i++){
+        addSquare("div", "square");
+}
+    //add a hover trail
+    const squares = document.querySelectorAll(".square");
+    squares.forEach(s => s.addEventListener("mouseover",function(s){
+        this.classList.add("hovered");
+    }));
+
 }
 
-//add a hover trail
-const squares = document.querySelectorAll(".square");
-squares.forEach(s => s.addEventListener("mouseover",function(s){
-    this.classList.add("hovered");
-}))
+//function to clear grid
+function clearGrid(){
+    //clear current grid
+    document.querySelectorAll(".square").forEach(s => s.classList.remove("hovered"))
+    
+    //prompt user for size
+    dim = prompt("Enter new grid resolution.  Current resolution is " + dim);
+
+    if (dim > 100){
+        clearGrid();
+    }
+
+    generateGrid(dim);
+}
+
+//main code
+
+//define grid
+let dim = 16;
+
+//container selector
+const cont = document.querySelector(".container");
+
+//define the grid
+generateGrid(dim);
